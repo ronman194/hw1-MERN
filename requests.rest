@@ -5,16 +5,24 @@ GET http://localhost:3000
 GET http://localhost:3000/post
 
 ###
-GET http://localhost:3000/post?sender=some+one+1
+GET http://localhost:3000/post?sender=15934
 
 ###
-GET http://localhost:3000/post/635a60b2b900c4a44b25ab43
+GET http://localhost:3000/post/6374b180b046871241b98641
 
 ###
 POST  http://localhost:3000/post
 Content-Type:  application/json
 
 {
-    "message": "This is a test message",
-    "sender": "some one 2"
+    "message": "This is a test message2",
+    "sender": "15934"
+}
+
+###
+PUT  http://localhost:3000/post/6374c1068cb57a8754f520f8
+Content-Type:  application/json
+
+{
+    "message": "This is a test message552"
 }

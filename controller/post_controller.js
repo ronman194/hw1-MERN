@@ -35,6 +35,27 @@ const getPostById = async (req, res, next) => {
         });
     }
 }
+const updatePostById = async (req, res, next) => {
+    console.log('Update post by id: ' + req.params.id);
+    const id = req.params.id;
+    if (id == null | id == undefined) {
+        return res.status(400).send({ 'err': 'no id provided' });
+    }
+    const updateMessage = req.body.message;
+    if (updateMessage == null | updateMessage == undefined) {
+        return res.status(400).send({ 'err': 'no message provided' });
+    }
+    try {
+        await Post.findByIdAndUpdate(id, { message: updateMessage });
+        const post = await Post.findById(id);
+        res.status(200).send(post);
+    } catch (err) {
+        res.status(400).send({
+            'status': 'fail',
+            'err': err.message
+        });
+    }
+}
 
 const addNewPost = async (req, res, next) => {
     console.log(req.body);
@@ -57,4 +78,4 @@ const addNewPost = async (req, res, next) => {
 
 }
 
-module.exports = { getAllPosts, addNewPost, getPostById }
+module.exports = { getAllPosts, addNewPost, getPostById, updatePostById }
